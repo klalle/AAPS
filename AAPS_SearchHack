@@ -7,7 +7,7 @@
 var selectedLanguage = "de" //change to your country code
 var IncludEnglish = true  //also show english results
 
-window.setTimeout(function() { removeLinks() }, 5000);
+window.setTimeout(function() { removeLinks() }, 5000); //this will wait 5s before executing since the windows.load is not waiting for search results...
 
 function removeLinks(){
   var allElements = document.getElementsByTagName('a');
