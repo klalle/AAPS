@@ -4,7 +4,7 @@
 // @include       https://androidaps.readthedocs.io/en/latest/search.html*
 // ==/UserScript==
 
-var selectedLanguage = "pl" //change to your country code
+var selectedLanguage = "de" //change to your country code
 var IncludEnglish = true  //also show english results
 
 window.setTimeout(function() { removeLinks() }, 5000);
