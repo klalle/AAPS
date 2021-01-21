@@ -1,0 +1,33 @@
+// ==UserScript==
+// @name          AAPS langage search
+// @description   Filters out a specific language when searching on the site
+// @include       https://androidaps.readthedocs.io/en/latest/search.html*
+// ==/UserScript==
+
+//window.setTimeout(function() { alert('Hello world!') }, 10);
+
+var selectedLanguage = "EN"
+
+var allElements, thisElement;
+window.setTimeout(function() { removeLinks() }, 5000); //wait for the search to complete before execution (window.onload executes before this...)
+
+function removeLinks(){
+  allElements = document.getElementsByTagName('a');
+  //alert(allElements.length) //44 if no search hits
+  
+  var searchStr = "/CROWDIN/" + selectedLanguage + "/";
+  if(selectedLanguage=="EN"){
+    searchStr = "/latest/" + selectedLanguage + "/";
+  }
+  
+  for (var i = 0; i < allElements.length; i++) {
+    thisElement = allElements[i];
+    //alert(thisElement.href)
+    var theLink = thisElement.href;
+    if(theLink.indexOf("html?")>-1 &&(theLink.indexOf("/latest/")>-1 || theLink.indexOf("/CROWDIN/")>-1)){
+    	if(theLink.indexOf(searchStr) == -1){
+        thisElement.parentNode.style.display = 'none';
+    	}
+    }
+  }
+};
