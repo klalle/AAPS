@@ -4,30 +4,28 @@
 // @include       https://androidaps.readthedocs.io/en/latest/search.html*
 // ==/UserScript==
 
-//window.setTimeout(function() { alert('Hello world!') }, 10);
+var selectedLanguage = "pl" //change to your country code
+var IncludEnglish = true  //also show english results
 
-var selectedLanguage = "EN"
-
-var allElements, thisElement;
-window.setTimeout(function() { removeLinks() }, 5000); //wait for the search to complete before execution (window.onload executes before this...)
+window.setTimeout(function() { removeLinks() }, 5000);
 
 function removeLinks(){
-  allElements = document.getElementsByTagName('a');
-  //alert(allElements.length) //44 if no search hits
+  var allElements = document.getElementsByTagName('a');
+  //alert(allElements.length) 
   
   var searchStr = "/CROWDIN/" + selectedLanguage + "/";
-  if(selectedLanguage=="EN"){
-    searchStr = "/latest/" + selectedLanguage + "/";
-  }
+  var searchStrEN = "/latest/EN/";
   
   for (var i = 0; i < allElements.length; i++) {
-    thisElement = allElements[i];
+    var thisElement = allElements[i];
     //alert(thisElement.href)
     var theLink = thisElement.href;
-    if(theLink.indexOf("html?")>-1 &&(theLink.indexOf("/latest/")>-1 || theLink.indexOf("/CROWDIN/")>-1)){
-    	if(theLink.indexOf(searchStr) == -1){
-        thisElement.parentNode.style.display = 'none';
-    	}
+    
+    if(theLink.indexOf("html?")>-1 && theLink.indexOf("/CROWDIN/")>-1 && theLink.indexOf(searchStr) == -1){
+      thisElement.parentNode.style.display = 'none';
+    }
+    else if(!IncludEnglish && theLink.indexOf("html?")>-1 && theLink.indexOf("/latest/EN")>-1){
+      thisElement.parentNode.style.display = 'none';
     }
   }
 };
