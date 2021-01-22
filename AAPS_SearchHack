@@ -24,7 +24,7 @@ function removeLinks(){
     if(theLink.indexOf("html?")>-1 && theLink.indexOf("/CROWDIN/")>-1 && theLink.indexOf(searchStr) == -1){
       thisElement.parentNode.style.display = 'none';
     }
-    else if(!IncludEnglish && theLink.indexOf("html?")>-1 && theLink.indexOf("/latest/EN")>-1){
+    else if(!IncludEnglish && theLink.indexOf("html?")>-1 && theLink.indexOf(searchStrEN)>-1){
       thisElement.parentNode.style.display = 'none';
     }
   }
